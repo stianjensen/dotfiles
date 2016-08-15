@@ -41,9 +41,14 @@ ZSH_THEME="stiaje"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew osx pip sublime virtualenvwrapper web-search)
+plugins=(git brew osx pip sublime virtualenvwrapper web-search git-open)
 
 source $ZSH/oh-my-zsh.sh
+
+#fpath=( "$HOME/.zfunctions" $fpath )
+
+#autoload -U promptinit && promptinit
+#prompt pure
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -55,23 +60,42 @@ export PATH=$PATH:/usr/local/heroku/bin:/usr/local/share/npm/bin:/Users/stiaje/.
 
 export PATH=/Library/Frameworks/UnixImageIO.framework/Programs:$PATH
 export PATH=/Library/Frameworks/PROJ.framework/Programs:$PATH
-export PATH=/Library/Frameworks/GEOS.framework/Programs:$PATH
 export PATH=/Library/Frameworks/SQLite3.framework/Programs:$PATH
-export PATH=/Library/Frameworks/GDAL.framework/Programs:$PATH
 export PATH=/usr/local/pgsql/bin:$PATH
+export PATH=/Applications/MATLAB_R2015b.app/bin:$PATH
+export PATH=$HOME/.cabal/bin:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
+export PATH=$HOME/flex_sdk_4/bin:$PATH
+export PATH=$HOME/.git-scripts/:$PATH
+
+# Anaconda python, might want to uninstall
+# export PATH=$HOME/anaconda/bin:$PATH
+
+export LD_LIBRARY_PATH=/opt/openblas/lib:$LD_LIBRARY_PATH
+
+export PYTHONPATH=~/Projects/caffe/python:$PYTHONPATH
+export PYTHONPATH=~/Projects/master:$PYTHONPATH
+alias caffe='~/Projects/caffe/build/tools/caffe'
+
+export CPLUS_INCLUDE_PATH=$HOME/anaconda/include/python2.7:$HOME/anaconda/lib/python2.7/site-packages/numpy/core/include
 
 # Virtualenv
 source /usr/local/bin/virtualenvwrapper.sh
 export WORKON_HOME="$HOME/.virtualenvs"
+export PROJECT_HOME="$HOME/Projects"
 
 # Aliases
 
 alias git='noglob git'
 alias gs='git status'
 alias gb='git br'
+alias gc='git commit'
+alias gcb='git checkout -b'
+alias gu='git up'
+alias gf='cmp -s <(git branch | grep "^\* ") <(echo "* master") && echo "Force push disabled on master." || git push origin $(git branch | grep "^\* " | sed "s/^\* //") -f'
 
-source ~/.profile
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+alias venv='. venv/bin/activate'
+alias nin='~/Projects/nin/nin/backend/nin'
+alias gitdiff='git diff --no-index'
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
