@@ -2,20 +2,21 @@
 	name = Stian Jensen
 	email = me@stianj.com
 [push]
-	default = current
-	followTags = true
+    default = current
+    followTags = true
 [color]
-	ui = auto
+    ui = auto
 [branch]
-	autosetuprebase = always
+    autosetuprebase = always
 [core]
-	excludesfile = /Users/stiaje/.gitignore_global
+    excludesfile = /Users/stiaje/.gitignore_global
+	editor = /usr/local/bin/vim
 
 [alias]
     co = checkout
     cm = commit
     rb = rebase
-	wdiff = diff --color-words
+    wdiff = diff --color-words
     br = branch -v
     up = pull --rebase --prune
     amend = commit -a --amend
@@ -30,39 +31,44 @@
     forcepull = !git reset --hard origin/`git rev-parse --symbolic-full-name --abbrev-ref HEAD`
     refresh = !git fetch --all && git rebase origin/master
     root = !cd `git rev-parse --show-toplevel`
+    psh = push
 
 [rebase]
     autosquash = true
+    stat = true
+
 [filter "media"]
-	required = true
-	clean = git media clean %f
-	smudge = git media smudge %f
+    required = true
+    clean = git media clean %f
+    smudge = git media smudge %f
 [diff]
-	mnemonicprefix = true
-	compactionHeuristic = true
-	algorithm = patience
+    mnemonicprefix = true
+    compactionHeuristic = true
+    algorithm = patience
+	tool = vimdiff
 [rerere]
-	enabled = true
+    enabled = true
 [merge]
-	stat = true
+    stat = true
 [advice]
-	statusHints = false
-	pushNonFastForward = false
+    statusHints = false
+    pushNonFastForward = false
 [credential]
-	helper = cache
+    helper = cache
 [filter "hawser"]
-	clean = git hawser clean %f
-	smudge = git hawser smudge %f
-	required = true
+    clean = git hawser clean %f
+    smudge = git hawser smudge %f
+    required = true
 [filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 	required = true
 [interactive]
-	diffFilter = diff-highlight
+    diffFilter = diff-highlight
 [pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
+    log = diff-highlight | less
+    show = diff-highlight | less
+    diff = diff-highlight | less
 [commit]
-	verbose = true
+    verbose = true

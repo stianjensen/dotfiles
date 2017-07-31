@@ -3,16 +3,11 @@ execute pathogen#infect()
 set number
 "Toggle line numbers and fold column for easy copying:
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
-autocmd FileType python set complete+=k~/.vim/syntax/python.vim
 autocmd FileType scss setlocal shiftwidth=2 tabstop=2
 autocmd FileType less setlocal shiftwidth=2 tabstop=2
 autocmd FileType css setlocal shiftwidth=2 tabstop=2
 autocmd FileType json setlocal shiftwidth=2 tabstop=2
 autocmd FileType coffee setlocal shiftwidth=2 tabstop=2
-
-au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/syntax/yaml.vim
-au BufNewFile,BufRead *.ucf so ~/.vim/syntax/ucf.vim
-au BufNewFile,BufRead *.y so ~/.vim/syntax/happy.vim
 
 "Execute file being edited with <Shift> + e:
 map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
@@ -30,6 +25,28 @@ set softtabstop=4
 set autoindent
 set cursorline
 
+set backspace=indent,eol,start
+
+set statusline+=%#warningmsg#
+set statusline+=%{ALEGetStatusLine()}
+set statusline+=%*
+
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+let g:ale_javascript_eslint_executable = 'eslint_d'
+
+"let g:ale_open_list = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+
+set laststatus=2
+"let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+
+let g:rustfmt_autosave = 1
+
 cmap w!! %!sudo tee > /dev/null %
 
 set list
@@ -37,8 +54,3 @@ set listchars=nbsp:…,tab:▸\ ,trail:·
 "set lcs=eol:$,tab:\ \ 
 
 colors jellybeans
-
-autocmd BufWritePost *.py call Flake8()
-
-let jshint2_save = 1
-ru macros/justify.vim

@@ -41,7 +41,7 @@ ZSH_THEME="stiaje"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew osx pip sublime virtualenvwrapper web-search git-open)
+plugins=(git osx pip sublime web-search git-open alias-tips)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -62,27 +62,13 @@ export PATH=/Library/Frameworks/UnixImageIO.framework/Programs:$PATH
 export PATH=/Library/Frameworks/PROJ.framework/Programs:$PATH
 export PATH=/Library/Frameworks/SQLite3.framework/Programs:$PATH
 export PATH=/usr/local/pgsql/bin:$PATH
-export PATH=/Applications/MATLAB_R2015b.app/bin:$PATH
-export PATH=$HOME/.cabal/bin:$PATH
-export PATH=$HOME/Library/Haskell/bin:$PATH
-export PATH=$HOME/flex_sdk_4/bin:$PATH
 export PATH=$HOME/.git-scripts/:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 
-# Anaconda python, might want to uninstall
-# export PATH=$HOME/anaconda/bin:$PATH
-
-export LD_LIBRARY_PATH=/opt/openblas/lib:$LD_LIBRARY_PATH
-
-export PYTHONPATH=~/Projects/caffe/python:$PYTHONPATH
-export PYTHONPATH=~/Projects/master:$PYTHONPATH
-alias caffe='~/Projects/caffe/build/tools/caffe'
-
-export CPLUS_INCLUDE_PATH=$HOME/anaconda/include/python2.7:$HOME/anaconda/lib/python2.7/site-packages/numpy/core/include
-
-# Virtualenv
-source /usr/local/bin/virtualenvwrapper.sh
-export WORKON_HOME="$HOME/.virtualenvs"
-export PROJECT_HOME="$HOME/Projects"
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export GOPATH=$HOME/goprojects
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$(yarn global bin)
 
 # Aliases
 
@@ -91,6 +77,7 @@ alias gs='git status'
 alias gb='git br'
 alias gc='git commit'
 alias gcb='git checkout -b'
+alias gm='git bdone'
 alias gu='git up'
 alias gf='cmp -s <(git branch | grep "^\* ") <(echo "* master") && echo "Force push disabled on master." || git push origin $(git branch | grep "^\* " | sed "s/^\* //") -f'
 
@@ -98,4 +85,9 @@ alias venv='. venv/bin/activate'
 alias nin='~/Projects/nin/nin/backend/nin'
 alias gitdiff='git diff --no-index'
 
-export ANDROID_HOME=/usr/local/opt/android-sdk
+export PATH=~/.rbenv/shims:$PATH
+eval "$(rbenv init -)"
+
+# tabtab source for yarn package
+# uninstall by removing these lines or running `tabtab uninstall yarn`
+[[ -f /usr/local/lib/node_modules/yarn-completions/node_modules/tabtab/.completions/yarn.zsh ]] && . /usr/local/lib/node_modules/yarn-completions/node_modules/tabtab/.completions/yarn.zsh
