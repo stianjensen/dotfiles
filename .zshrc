@@ -88,14 +88,27 @@ export PROJECT_HOME="$HOME/Projects"
 
 alias git='noglob git'
 alias gs='git status'
-alias gb='git br'
+alias gb='git b'
 alias gc='git commit'
 alias gcb='git checkout -b'
 alias gu='git up'
 alias gf='cmp -s <(git branch | grep "^\* ") <(echo "* master") && echo "Force push disabled on master." || git push origin $(git branch | grep "^\* " | sed "s/^\* //") -f'
+alias gl='git log --oneline'
+alias gri='git rebase -i'
+alias c='git checkout -b'
+alias b='git checkout'
+alias gr='git rebase'
+alias m='git bdone'
+alias log='git log'
+alias p='git push'
 
 alias venv='. venv/bin/activate'
 alias nin='~/Projects/nin/nin/backend/nin'
 alias gitdiff='git diff --no-index'
+
+# Typos
+alias im='vim'
+alias it='git'
+alias gti='git'
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
