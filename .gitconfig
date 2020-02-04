@@ -15,7 +15,7 @@
     co = checkout
     cm = commit
     rb = rebase
-	wdiff = diff --color-words
+    wdiff = diff --color-words
     br = branch -v
     up = pull --rebase --prune
     amend = commit -a --amend
@@ -27,9 +27,13 @@
     bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
     force = push --force-with-lease
     unpushed = log @{push}..
-    forcepull = !git reset --hard origin/`git rev-parse --symbolic-full-name --abbrev-ref HEAD`
+    forcepull = !git fetch && git reset --hard origin/`git rev-parse --symbolic-full-name --abbrev-ref HEAD`
     refresh = !git fetch --all && git rebase origin/master
     root = !cd `git rev-parse --show-toplevel`
+    changes = log -p -M --follow --stat --
+    shoe = show
+    b = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(content  s:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset)) %(upstream:track)'
+    f = push --force-with-lease
 
 [rebase]
     autosquash = true
